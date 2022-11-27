@@ -19,6 +19,7 @@ namespace sentinelapi.Domain.Models
         public bool? IsRented { get; set; }
         public string? Description { get; set; }
         public int? BookingId { get; set; }
+        public int? Book { get; set; }
 
         public bool? IsActive { get; set; }
         public bool? IsDeleted { get; set; }

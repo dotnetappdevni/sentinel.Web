@@ -17,12 +17,8 @@ namespace sentinelapi.Services
                 {
                     LockerId = i,
                    
-                    Booking= new Booking {
-                        StartDate = DateTime.Now,
-                        EndDate = DateTime.Now.AddDays(5)
-                        
-                        
-                    },
+                      
+                  
                     
                     Description = "Test Lockers " + i,
                     RowId = "A",

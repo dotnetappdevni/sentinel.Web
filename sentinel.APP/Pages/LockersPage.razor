@@ -1,0 +1,83 @@
+﻿@page "/lockerspage"
+@using System.Net.Http.Json
+@using sentinelapi.Domain.Models;
+@using  sentinelapi.Domain;
+ @using System.Text;
+ @using Newtonsoft.Json.Serialization;
+ @using Newtonsoft.Json;
+@inject NavigationManager NavManager
+
+@inject HttpClient httpClient
+<MudDataGrid T=Locker Items="@Elements" ReadOnly="@_readOnly"   Filterable=true >
+    <ToolBarContent>
+        <MudText Typo="Typo.h6">Periodic Elements</MudText>
+        <MudSpacer />
+        <MudTextField @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="true"
+                      AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+    </ToolBarContent>
+    <Columns>
+        <Column T="Locker" Field="LockerId" />
+        <Column T="Locker" Field="Name" />
+        <Column T="Locker" Field="IsRented"  CellStyleFunc="@_cellStyleFunc" />
+        <Column T="Locker" Hidden="@(_isCellEditMode || _readOnly || _editTriggerRowClick)" CellClass="d-flex justify-end">
+            <CellTemplate>
+                <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Edit" OnClick="@context.Actions.StartEditingItem" Color="Color.Error">Book Locker</MudButton>
+
+
+            </CellTemplate>
+        </Column>
+    </Columns>     
+</MudDataGrid>
+<h3>LockersPage</h3>
+
+@code {
+    private IEnumerable<Locker> Elements;
+    private bool _readOnly;
+
+    private string _searchString;
+    private bool _isCellEditMode;
+    private bool _editTriggerRowClick;
+    private List<string> _events = new();
+
+    private Func<Locker, string> _cellStyleFunc => x =>
+      {
+          string style = "";
+
+          if (x.IsRented == false)
+              style += "background-color:#00FF00";
+          else
+              style += "background-color:#FF0000";
+          return style;
+
+      };
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            string url = Constants.BaseUrl + Constants.GetAllLockers;
+            var response = await httpClient.GetAsync(url);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var byteArray = await response.Content.ReadAsByteArrayAsync();
+
+                var content = Encoding.UTF8.GetString(byteArray, 0, byteArray.Length);
+                Elements = JsonConvert.DeserializeObject<IEnumerable<Locker>>(content);
+            }
+        }
+        catch(Exception ex)
+        {
+            
+        }
+
+
+    }
+
+    // events
+    void StartEditingItem(Locker item)
+    {
+
+        NavManager.NavigateTo("/BookingPage");
+    }
+     
+}
