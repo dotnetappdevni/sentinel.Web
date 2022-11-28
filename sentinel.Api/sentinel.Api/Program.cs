@@ -1,22 +1,43 @@
 
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
+using sentinelapi.Domain;
+using sentinelapi.Domain.Entities;
 using sentinelapi.Services;
 using sentinelapi.Services.Interface;
+using System;
 
 namespace sentinel.Api
 {
     public class Program
     {
+        public static IConfiguration Configuration { get; }
+       
         public static void Main(string[] args)
-        {
-            var builder = WebApplication.CreateBuilder(args);
-
+        {  
+        var builder = WebApplication.CreateBuilder(args);
+            var configuration = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile(
+                    $"appsettings.json",
+                    optional: true)
+                .Build();
             // Add services to the container.
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddScoped<ILockerInterface, LockersService>();
+            builder.Services.AddDbContext<ApplicationDBContext>
+(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient);
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+            .AddEntityFrameworkStores<ApplicationDBContext>()
+               .AddDefaultTokenProviders();
+            var appSettingsSection =  configuration.GetSection("AppSettings");
+
+            builder.Services.Configure<AppSettings>(appSettingsSection);
 
 
             builder.Services.AddSwaggerGen(c =>
@@ -63,8 +84,8 @@ namespace sentinel.Api
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
-
 
             app.MapControllers();
 

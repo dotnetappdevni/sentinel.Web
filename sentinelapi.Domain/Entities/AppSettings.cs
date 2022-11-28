@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace sentinelapi.Domain.Models
+namespace sentinelapi.Domain.Entities
 {
-    public  class LockersHistory
+    public class AppSettings
     {
+        public string Secret { get; set; }
     }
 }

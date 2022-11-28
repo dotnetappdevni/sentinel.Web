@@ -4,22 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace sentinelapi.Domain.Models
+namespace sentinelapi.Domain.Entities
 {
-    public  class Locker
+    public class Ref_Lockers
     {
         public int Id { get; set; }
-     
 
         public int? LockerId { get; set; }
 
-        public string? RowId { get; set; }
-        public string Name { get; set; }
-        public int? Size { get; set; }
-        public bool? IsRented { get; set; }
-        public string? Description { get; set; }
-        public int? BookingId { get; set; }
-        public int? Book { get; set; }
+        public string? DisplayName { get; set; }
+        
+        public int? LockerGroupId { get; set; }
+
 
         public bool? IsActive { get; set; }
         public bool? IsDeleted { get; set; }
@@ -31,5 +27,6 @@ namespace sentinelapi.Domain.Models
         public string? LastModifiedBy { get; set; }
 
         public DateTime? LastModifiedDate { get; set; }
+
     }
 }

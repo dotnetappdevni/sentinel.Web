@@ -4,21 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace sentinelapi.Domain.Models
+namespace sentinelapi.Domain.Entities
 {
-    public class Person
+    public  class Locker
     {
         public int Id { get; set; }
+     
 
-        public string? Name { get; set; }
+        public int? LockerId { get; set; }
+
+        public string? RowId { get; set; }
+        public string Name { get; set; }
+        public int? Size { get; set; }
+        public bool? IsRented { get; set; }
         public string? Description { get; set; }
-        public string? Address { get; set; }
-        public string? City { get; set; }
-        public string? Region { get; set; }
-        public string? PostalCode { get; set; }
-        
-        public string? Phone { get; set; }
-         public bool? IsActive { get; set; }
+        public int? BookingId { get; set; }
+        public int? Book { get; set; }
+
+        public bool? IsActive { get; set; }
         public bool? IsDeleted { get; set; }
 
         public bool? IsModified { get; set; }

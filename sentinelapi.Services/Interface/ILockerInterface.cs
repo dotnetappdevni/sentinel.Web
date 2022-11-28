@@ -1,4 +1,4 @@
-﻿using sentinelapi.Domain.Models;
+﻿using sentinelapi.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

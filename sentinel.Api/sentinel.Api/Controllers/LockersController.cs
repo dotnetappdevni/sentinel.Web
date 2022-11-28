@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using sentinelapi.Domain.Models;
+using sentinelapi.Domain.Entities;
 using sentinelapi.Services.Interface;
 
 namespace sentinel.Api.Controllers
