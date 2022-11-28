@@ -8,6 +8,27 @@
 @inject NavigationManager NavManager
 
 @inject HttpClient httpClient
+<MudSimpleTable Style="overflow-x: auto;">
+    <thead>
+        <tr>
+            @foreach (var h in headings)
+            {
+                <th>@h</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            @foreach (var row in lockerIds)
+            {
+
+                <td>@row</td>
+            }
+        </tr>
+    </tbody>
+</MudSimpleTable>
+
+
 <MudDataGrid T=Locker Items="@Elements" ReadOnly="@_readOnly"   Filterable=true >
     <ToolBarContent>
         <MudText Typo="Typo.h6">Periodic Elements</MudText>
@@ -15,10 +36,10 @@
         <MudTextField @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="true"
                       AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
     </ToolBarContent>
+    
     <Columns>
         <Column T="Locker" Field="LockerId" />
         <Column T="Locker" Field="Name" Title="Row"   />
-        <Column T="Locker" Field="IsRented"  CellStyleFunc="@_cellStyleFunc" />
         <Column T="Locker" Hidden="@(_isCellEditMode || _readOnly || _editTriggerRowClick)" CellClass="d-flex justify-end">
             <CellTemplate>
                 <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Edit" OnClick="@context.Actions.StartEditingItem" Color="Color.Error">Book Locker</MudButton>
@@ -26,14 +47,16 @@
 
             </CellTemplate>
         </Column>
-    </Columns>     
+        </Columns>
+
 </MudDataGrid>
 <h3>LockersPage</h3>
 
 @code {
     private IEnumerable<Locker> Elements;
     private bool _readOnly;
-
+    string[] headings = { "A", "B", "C", "D", "E", "F" ,"G","H"};
+    
     private string _searchString;
     private bool _isCellEditMode;
     private bool _editTriggerRowClick;
@@ -54,16 +77,16 @@
     {
         try
         {
-            string url = Constants.BaseUrl + Constants.GetAllLockers;
-            var response = await httpClient.GetAsync(url);
+            //string url = Constants.BaseUrl + Constants.GetAllLockers;
+            //var response = await httpClient.GetAsync(url);
 
-            if (response.IsSuccessStatusCode)
-            {
-                var byteArray = await response.Content.ReadAsByteArrayAsync();
+            //if (response.IsSuccessStatusCode)
+            //{
+            //    var byteArray = await response.Content.ReadAsByteArrayAsync();
 
-                var content = Encoding.UTF8.GetString(byteArray, 0, byteArray.Length);
-                Elements = JsonConvert.DeserializeObject<IEnumerable<Locker>>(content);
-            }
+            //    var content = Encoding.UTF8.GetString(byteArray, 0, byteArray.Length);
+            //    Elements = JsonConvert.DeserializeObject<IEnumerable<Locker>>(content);
+            //}
         }
         catch(Exception ex)
         {

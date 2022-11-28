@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 using System.Net.Http;
     using sentinel.APP.Data;
+using MudBlazor;
+using MudBlazor.Services;
 
 namespace sentinel.APP
 {
@@ -17,8 +19,7 @@ namespace sentinel.APP
                 });
             
             builder.Services.AddHttpClient();
-            builder.Services.AddScoped<HttpClient>();
-
+            builder.Services.AddMudServices();
             builder.Services.AddScoped<HttpClient>();
             builder.Services.AddMauiBlazorWebView();
 
