@@ -6,22 +6,23 @@ using System.Threading.Tasks;
 
 namespace sentinelapi.Domain.Entities
 {
-    public  class Locker
+    public  class Addresses
     {
         public int Id { get; set; }
-     
-
-        public int? LockerId { get; set; }
 
         public int? GroupId { get; set; }
-        public string? RowId { get; set; }
         public string? Name { get; set; }
-        public int? Size { get; set; }
-        public bool? IsRented { get; set; }
-        public string? Description { get; set; }
-        public int? BookingId { get; set; }
-        public int? Book { get; set; }
 
+        public string? AddressLine1 { get; set; }
+        public string? AddressLine2 { get; set; }
+
+        public string? AddressLine3 { get; set; }
+
+        public string? AddressLine4 { get; set; }
+
+        public string? Country { get; set; }
+
+        public string? PostCode { get; set; }
         public bool? IsActive { get; set; }
         public bool? IsDeleted { get; set; }
 

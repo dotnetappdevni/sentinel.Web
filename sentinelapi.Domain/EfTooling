@@ -1,4 +1,4 @@
- dotnet ef migrations add firstmigration -p sentinelapi.Domain  -c ApplicationDBContext
+dotnet ef migrations add firstmigration -p sentinel.Persistance -c ApplicationDBContext 
 
 
-dotnet ef database update -p sentinelapi.Domain  -c TheHockeyLabMnDBContext
+dotnet ef database update -p sentinel.Persistance  -c ApplicationDBContext

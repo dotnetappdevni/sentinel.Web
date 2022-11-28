@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
-using sentinel.APP.Data;
-using MudBlazor.Services;namespace sentinel.APP
+using System.Net.Http;
+    using sentinel.APP.Data;
+
+namespace sentinel.APP
 {
     public static class MauiProgram
     {
@@ -13,12 +15,11 @@ using MudBlazor.Services;namespace sentinel.APP
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 });
-
-            builder.Services.AddMudServices();
+            
             builder.Services.AddHttpClient();
-
             builder.Services.AddScoped<HttpClient>();
 
+            builder.Services.AddScoped<HttpClient>();
             builder.Services.AddMauiBlazorWebView();
 
 #if DEBUG

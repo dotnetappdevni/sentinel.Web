@@ -8,7 +8,7 @@ namespace sentinelapi.Domain
 {
     public class Constants
     {
-        public const string BaseUrl = "https://localhost:7087/";
+        public const string BaseUrl = "https://api-sentinel.dotnetappdevni.com/";
 
         public const string GetAllLockers = "Lockers";
     }

@@ -10,6 +10,7 @@ namespace sentinelapi.Domain.Entities
     {
         public int Id { get; set; }
 
+        public Company? Company { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }
         public string? Address { get; set; }
@@ -28,5 +29,8 @@ namespace sentinelapi.Domain.Entities
         public string? LastModifiedBy { get; set; }
 
         public DateTime? LastModifiedDate { get; set; }
+
+        public ICollection<Addresses>? Addresses { get; set; }
+
     }
 }

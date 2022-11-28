@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
+using sentinel.Persistance;
 using sentinelapi.Domain;
 using sentinelapi.Domain.Entities;
 using sentinelapi.Services;
@@ -32,6 +33,7 @@ namespace sentinel.Api
             builder.Services.AddScoped<ILockerInterface, LockersService>();
             builder.Services.AddDbContext<ApplicationDBContext>
 (options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient);
+
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDBContext>()
                .AddDefaultTokenProviders();
