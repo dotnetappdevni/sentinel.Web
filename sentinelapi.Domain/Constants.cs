@@ -10,6 +10,7 @@ namespace sentinelapi.Domain
     {
         public const string BaseUrl = "https://api-sentinel.dotnetappdevni.com/";
 
-        public const string GetAllLockers = "Lockers";
+        public const string Lockers = "Lockers";
+         
     }
 }

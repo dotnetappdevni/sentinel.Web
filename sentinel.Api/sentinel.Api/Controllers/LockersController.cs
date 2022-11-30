@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using sentinelapi.Domain.Entities;
 using sentinelapi.Services.Interface;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace sentinel.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class LockersController : ControllerBase 
+    public class LockersController : ControllerBase
     {
         private readonly ILockerInterface _iLockerInterface;
 
@@ -20,8 +21,17 @@ namespace sentinel.Api.Controllers
         public IEnumerable<Locker> GetAll()
         {
 
-            return _iLockerInterface.GetAll(); 
+            return _iLockerInterface.GetAll();
+        }
+
+
+        [HttpPut]
+        public IActionResult Put(Locker locker)
+        {
+            _iLockerInterface.UpdateLockerStatus(locker);
+            return Ok(locker);
+
         }
 
     }
-}
+    }

@@ -13,10 +13,31 @@ namespace sentinelapi.Services
         
             _context = context;
         }
+
         public IEnumerable<Locker> GetAll()
         {
- 
-            return _context.Lockers.Where(w=>w.GroupId==1 && w.IsActive==true && w.IsDeleted == true).AsEnumerable();
+
+            return _context.Lockers.Where(w => w.IsActive == true && w.IsDeleted == false).AsEnumerable();
+
+        }
+        public void UpdateLockerStatus(Locker locker)
+        {
+            
+            var currentLocker = _context.Lockers.Where(w => w.LockerId==locker.LockerId && w.IsActive == true && w.IsDeleted == false).FirstOrDefault();
+            currentLocker.IsRented = locker.IsRented;
+            _context.Update(currentLocker);
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+            }
+           
+
+
+
+
 
         }
 

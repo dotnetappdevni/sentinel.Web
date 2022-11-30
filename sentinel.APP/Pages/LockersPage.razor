@@ -8,26 +8,52 @@
 @inject NavigationManager NavManager
 
 @inject HttpClient httpClient
-<MudSimpleTable Style="overflow-x: auto;">
+<table cellpadding="10" cellspacing="10">
     <thead>
         <tr>
-            @foreach (var h in headings)
+            @foreach (var item in headings)
             {
-                <th>@h</th>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+            <th>@item </th>
             }
         </tr>
     </thead>
     <tbody>
         <tr>
-            @foreach (var row in lockerIds)
+            @foreach(var item in Elements)
             {
+                @if(item.IsRented==true)
+                {
+                    <td style="width:300px;height:100px;background-color:red;color:white;">
+                        @item.Name
+                        Occupied
+                    
+                    </td>
+                     
+                }else
+                {
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <td style="width:200px;height:100px;background-color:green;color:white;text-align:center;  border-spacing: 10px;"> @item.Name
+                        <p>&nbsp;</p>
+                         <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                        <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Edit" @onclick="@(() => NavigateToBBookingPage(item.LockerId.ToString()))" Color=" Color.Error">Book</MudButton>
 
-                <td>@row</td>
+                       
+
+
+                    </td>
+                }
             }
         </tr>
     </tbody>
-</MudSimpleTable>
+</table>
 
+@*
 
 <MudDataGrid T=Locker Items="@Elements" ReadOnly="@_readOnly"   Filterable=true >
     <ToolBarContent>
@@ -49,14 +75,14 @@
         </Column>
         </Columns>
 
-</MudDataGrid>
-<h3>LockersPage</h3>
+</MudDataGrid>*@
+ 
 
 @code {
-    private IEnumerable<Locker> Elements;
+    public List<Locker> Elements { get; set; }
     private bool _readOnly;
     string[] headings = { "A", "B", "C", "D", "E", "F" ,"G","H"};
-    
+
     private string _searchString;
     private bool _isCellEditMode;
     private bool _editTriggerRowClick;
@@ -77,16 +103,18 @@
     {
         try
         {
-            //string url = Constants.BaseUrl + Constants.GetAllLockers;
-            //var response = await httpClient.GetAsync(url);
+            Elements = new List<Locker>();
+            string url = Constants.BaseUrl + Constants.Lockers;
+            var response = await httpClient.GetAsync(url);
 
-            //if (response.IsSuccessStatusCode)
-            //{
-            //    var byteArray = await response.Content.ReadAsByteArrayAsync();
+            if (response.IsSuccessStatusCode)
+            {
+                var byteArray = await response.Content.ReadAsByteArrayAsync();
 
-            //    var content = Encoding.UTF8.GetString(byteArray, 0, byteArray.Length);
-            //    Elements = JsonConvert.DeserializeObject<IEnumerable<Locker>>(content);
-            //}
+                var content = Encoding.UTF8.GetString(byteArray, 0, byteArray.Length);
+                Elements = JsonConvert.DeserializeObject<List<Locker>>(content);
+                Elements = Elements.Where(w => w.GroupId == 2).ToList(); 
+            }
         }
         catch(Exception ex)
         {
@@ -95,12 +123,11 @@
 
 
     }
-
-    // events
-    void StartEditingItem(Locker item)
-    {
-
-        NavManager.NavigateTo("/BookingPage");
-    }
+    private void NavigateToBBookingPage(string? id) { 
+        NavManager.NavigateTo($"/BookingPage/{id}");
+        
+}
+    
+    
      
 }

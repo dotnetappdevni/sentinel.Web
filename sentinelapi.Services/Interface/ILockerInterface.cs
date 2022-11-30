@@ -11,5 +11,8 @@ namespace sentinelapi.Services.Interface
     {
         public IEnumerable<Locker> GetAll();
 
+        public void UpdateLockerStatus(Locker locker);
+
+
     }
 }
