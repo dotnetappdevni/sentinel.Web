@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace sentinelapi.Domain.Entities
+namespace sentinelapi.Entities
 {
     public  class LockersHistory
     {

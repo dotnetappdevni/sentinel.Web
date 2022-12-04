@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using sentinelapi.Domain.Entities;
 using sentinelapi.Services.Interface;
+using sentinelapi.Entities;
 using static System.Reflection.Metadata.BlobBuilder;
 
 namespace sentinel.Api.Controllers

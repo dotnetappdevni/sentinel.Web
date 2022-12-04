@@ -1,4 +1,4 @@
-dotnet ef migrations add firstmigration -p sentinel.Persistance -c ApplicationDBContext 
+dotnet ef migrations add firstmigration2 -p sentinel.Persistance -c ApplicationDBContext 
 
 
 dotnet ef database update -p sentinel.Persistance  -c ApplicationDBContext

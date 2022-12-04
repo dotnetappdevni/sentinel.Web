@@ -1,18 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace sentinelapi.Domain.Entities
+namespace sentinelapi.Entities
 {
-    public class Company
+    public class Ref_Lockers
     {
         public int Id { get; set; }
 
-        public int? GroupId { get; set; }
-        public string? Name { get; set; }
+        public int? LockerId { get; set; }
+
+        public string? DisplayName { get; set; }
+        
+        public int? LockerGroupId { get; set; }
+
+
         public bool? IsActive { get; set; }
         public bool? IsDeleted { get; set; }
 
@@ -23,7 +27,6 @@ namespace sentinelapi.Domain.Entities
         public string? LastModifiedBy { get; set; }
 
         public DateTime? LastModifiedDate { get; set; }
-        public ICollection<Addresses>? Addresses { get; set; }
 
     }
 }

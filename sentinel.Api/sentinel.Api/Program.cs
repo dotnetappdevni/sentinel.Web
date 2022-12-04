@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
 using sentinel.Persistance;
 using sentinelapi.Domain;
-using sentinelapi.Domain.Entities;
+using sentinelapi.Entities;
 using sentinelapi.Services;
 using sentinelapi.Services.Interface;
 using System;
@@ -30,6 +30,7 @@ namespace sentinel.Api
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddScoped<ILockerInterface, LockersService>();
+            builder.Services.AddScoped<ICustomerInterface, CustomerService>();
             builder.Services.AddDbContext<ApplicationDBContext>
 (options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient);
 

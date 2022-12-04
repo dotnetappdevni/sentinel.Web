@@ -4,19 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace sentinelapi.Domain.Entities
+namespace sentinelapi.Entities
 {
-    public class Ref_Lockers
+    public  class Addresses
     {
         public int Id { get; set; }
 
-        public int? LockerId { get; set; }
+        public int? GroupId { get; set; }
+        public string? Name { get; set; }
 
-        public string? DisplayName { get; set; }
-        
-        public int? LockerGroupId { get; set; }
+        public string? AddressLine1 { get; set; }
+        public string? AddressLine2 { get; set; }
 
+        public string? AddressLine3 { get; set; }
 
+        public string? AddressLine4 { get; set; }
+
+        public string? Country { get; set; }
+      
+        public string? PostCode { get; set; }
         public bool? IsActive { get; set; }
         public bool? IsDeleted { get; set; }
 
@@ -27,6 +33,5 @@ namespace sentinelapi.Domain.Entities
         public string? LastModifiedBy { get; set; }
 
         public DateTime? LastModifiedDate { get; set; }
-
     }
 }

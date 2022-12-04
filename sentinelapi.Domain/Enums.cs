@@ -8,7 +8,7 @@ namespace sentinelapi.Domain
 {
     public class Enums
     {
-        enum LockerSizeEnum{
+        public enum LockerSizeEnum{
         
             Small=1,
             Medium=2,
@@ -16,6 +16,12 @@ namespace sentinelapi.Domain
             XtraLarge=4 ,
             XL=5,
             
+        }
+
+        public enum CustomerTypeEnum
+        {
+            Private=1,
+            Company=2
         }
 
     }

@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 
 namespace sentinelapi.Services.Interface
 {
-     public interface ILockerInterface
+    public  interface ICustomerInterface
     {
-        public IEnumerable<Locker> GetAll();
+         IEnumerable<Customer> GetAll();
 
-        public void UpdateLockerStatus(Locker locker);
+        void AddCustomer(Customer customer);
 
+        void UpdateCustomer(Customer customer);
 
     }
 }

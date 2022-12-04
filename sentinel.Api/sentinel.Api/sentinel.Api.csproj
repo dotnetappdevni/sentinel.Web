@@ -6,6 +6,8 @@
 	  <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
 
 	  <ImplicitUsings>enable</ImplicitUsings>
+
+	  <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
@@ -24,6 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\sentinel.Entities\sentinel.Entities.csproj" />
     <ProjectReference Include="..\..\sentinel.Persistance\sentinel.Persistance.csproj" />
     <ProjectReference Include="..\..\sentinelapi.Domain\sentinelapi.Domain.csproj" />
     <ProjectReference Include="..\..\sentinelapi.Services\sentinelapi.Services.csproj" />

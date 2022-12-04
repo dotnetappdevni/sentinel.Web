@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace sentinelapi.Domain.Entities
+namespace sentinelapi.Entities
 {
     public  class Booking
     {
@@ -12,7 +12,7 @@ namespace sentinelapi.Domain.Entities
         
 
         public int? PersonId { get; set; }
-        public Person? Person { get; set; }
+        public Customer? Person { get; set; }
         
         public string? Description { get; set; }
 

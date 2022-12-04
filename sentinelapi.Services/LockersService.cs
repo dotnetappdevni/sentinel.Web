@@ -1,8 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using sentinel.Persistance;
-using sentinelapi.Domain.Entities;
-using sentinelapi.Services.Interface;
+﻿using sentinel.Persistance;
 
+using sentinelapi.Services.Interface;
+using sentinelapi.Entities;
 namespace sentinelapi.Services
 {
     public class LockersService : ILockerInterface
